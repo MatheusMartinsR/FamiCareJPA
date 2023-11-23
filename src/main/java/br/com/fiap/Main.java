@@ -18,7 +18,7 @@ public class Main {
         try {
             em.getTransaction().begin();
 
-            // Criando instâncias das classes fornecidas
+
             Pessoa pessoa = new Pessoa();
             pessoa.setNome("João");
             pessoa.setNascimento(LocalDate.now());
@@ -37,7 +37,7 @@ public class Main {
             exameMedico.setData(LocalDate.now());
             exameMedico.setFamiliar(familiar);
 
-            // Persistindo as entidades
+
             em.persist(pessoa);
             em.persist(pessoaFisica);
             em.persist(familiar);
