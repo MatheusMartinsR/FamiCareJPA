@@ -1,14 +1,11 @@
 package br.com.fiap.domain.entity;
 
-
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
-
 @Table(name = "TB_PESSOA")
-
 public class Pessoa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PESSOA")
     @Column(name = "ID_PESSOA")
@@ -19,6 +16,20 @@ public class Pessoa {
 
     @Column(name = "DT_NASCIMENTO")
     private LocalDate nascimento;
+
+
+    public Pessoa(Long id, String nome, LocalDate nascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.nascimento = nascimento;
+    }
+
+
+    public Pessoa() {
+        super();
+    }
+
+
 
     public Long getId() {
         return id;
@@ -56,4 +67,3 @@ public class Pessoa {
                 '}';
     }
 }
-

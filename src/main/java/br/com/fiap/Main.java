@@ -1,19 +1,57 @@
 package br.com.fiap;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import br.com.fiap.domain.entity.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Ctrl+1 with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("oracle");
+        EntityManager em = emf.createEntityManager();
 
-        // Press Alt+Shift+X or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        try {
+            em.getTransaction().begin();
 
-            // Press Alt+Shift+D to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+Shift+B.
-            System.out.println("i = " + i);
+            // Criando instâncias das classes fornecidas
+            Pessoa pessoa = new Pessoa();
+            pessoa.setNome("João");
+            pessoa.setNascimento(LocalDate.now());
+
+            PessoaFisica pessoaFisica = new PessoaFisica();
+            pessoaFisica.setCPF("12345678901");
+            pessoaFisica.setSexo(Sexo.MASCULINO);
+
+            Familiar familiar = new Familiar();
+            familiar.setCpf("98765432109");
+            familiar.setEmail("familiar@example.com");
+            familiar.setPessoa(pessoa);
+
+            ExameMedico exameMedico = new ExameMedico();
+            exameMedico.setLaboratorial("Hemograma");
+            exameMedico.setData(LocalDate.now());
+            exameMedico.setFamiliar(familiar);
+
+            // Persistindo as entidades
+            em.persist(pessoa);
+            em.persist(pessoaFisica);
+            em.persist(familiar);
+            em.persist(exameMedico);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+            emf.close();
         }
     }
 }
