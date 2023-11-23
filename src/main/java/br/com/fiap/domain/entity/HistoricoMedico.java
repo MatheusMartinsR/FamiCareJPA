@@ -2,6 +2,8 @@ package br.com.fiap.domain.entity;
 
 import jakarta.persistence.*;
 
+
+@Entity
 @Table(name = "TB_HISTORICO_MEDICO")
 public class HistoricoMedico
 {

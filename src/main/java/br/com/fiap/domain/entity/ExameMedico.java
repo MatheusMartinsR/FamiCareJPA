@@ -4,11 +4,13 @@ import br.com.fiap.domain.entity.Familiar;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+
+@Entity
 @Table(name = "TB_EXAME_MEDICO")
 public class ExameMedico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_DATA_COMPRA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_EXAME_MEDICO")
     @Column(name = "ID_EXAME")
     private Long id;
 

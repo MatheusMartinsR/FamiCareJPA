@@ -2,12 +2,13 @@ package br.com.fiap.domain.entity;
 
 import jakarta.persistence.*;
 
+@Entity
 @Table(name = "TB_FAMILIAR")
 
 public class Familiar {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_ENDERECO_FORNECEDOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_FAMILIAR")
     @Column(name = "ID_FAMILIAR")
     private Long id;
 

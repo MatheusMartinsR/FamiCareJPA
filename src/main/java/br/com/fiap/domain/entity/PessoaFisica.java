@@ -26,27 +26,15 @@ public class PessoaFisica {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "TB_FAMILIARES",
-            joinColumns = {
-                    @JoinColumn(
-                            name = "ID_PESSOA",
-                            referencedColumnName = "ID_PESSOA",
-                            foreignKey = @ForeignKey(name = "FK_PESSOA")
-                    )
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(
-                            name = "ID_FAMILIAR",
-                            referencedColumnName = "ID_PESSOA",
-                            foreignKey = @ForeignKey(name = "FK_FAMILIAR")
-                    )
-            }
+            joinColumns = @JoinColumn(name = "ID_PESSOA_FISICA"),
+            inverseJoinColumns = @JoinColumn(name = "ID_FAMILIAR"),
+            foreignKey = @ForeignKey(name = "FK_PESSOA_FAMILIAR"),
+            inverseForeignKey = @ForeignKey(name = "FK_FAMILIAR_PESSOA")
     )
     private Set<PessoaFisica> familiares = new LinkedHashSet<>();
 
-
     public PessoaFisica() {
     }
-
 
     public PessoaFisica(Long id, String CPF, Sexo sexo, Set<PessoaFisica> familiares) {
         this.id = id;
@@ -54,7 +42,6 @@ public class PessoaFisica {
         this.sexo = sexo;
         this.familiares = familiares;
     }
-
 
     public PessoaFisica addFamiliar(PessoaFisica familiar) {
         if (familiar.equals(this)) throw new RuntimeException("Não é permitido adicionar a si mesmo como familiar.");
@@ -66,8 +53,6 @@ public class PessoaFisica {
         this.familiares.remove(familiar);
         return this;
     }
-
-
 
     public Long getId() {
         return id;

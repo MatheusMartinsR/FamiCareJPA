@@ -3,7 +3,7 @@ package br.com.fiap.domain.entity;
 
 import jakarta.persistence.*;
 
-
+@Entity
 @Table(name = "TB_RECEITA_MEDICA")
 
 public class ReceitaMedica {

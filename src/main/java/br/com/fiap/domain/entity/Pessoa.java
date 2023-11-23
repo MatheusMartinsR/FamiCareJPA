@@ -3,11 +3,13 @@ package br.com.fiap.domain.entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 @Table(name = "TB_PESSOA")
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PESSOA")
+    @SequenceGenerator(name = "SQ_PESSOA", sequenceName = "SQ_PESSOA", allocationSize = 50)
     @Column(name = "ID_PESSOA")
     private Long id;
 
