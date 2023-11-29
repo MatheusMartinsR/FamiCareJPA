@@ -58,6 +58,10 @@ Implementação em Plataformas Não Mobile: Desenvolvimento para plataformas que
 
 -->link<----
 
+# Vídeo testando:
+
+-->link<----
+
 # Como rodar a aplicação:
 
 Abra o Projeto no Seu IDE:
