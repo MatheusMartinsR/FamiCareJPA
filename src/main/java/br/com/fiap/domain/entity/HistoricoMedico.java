@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class HistoricoMedico
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_FORNECEDOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_HISTORICO")
     @Column(name = "ID_HISTORICO")
     private Long id;
 

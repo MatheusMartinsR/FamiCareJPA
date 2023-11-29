@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 
 public class ReceitaMedica {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_MARCA")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_RECEITA_MEDICA")
     @Column(name = "ID_RECEITA")
     private Long id;
 

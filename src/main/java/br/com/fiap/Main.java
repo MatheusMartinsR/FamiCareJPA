@@ -6,8 +6,6 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 public class Main {
 
@@ -18,29 +16,31 @@ public class Main {
         try {
             em.getTransaction().begin();
 
-
+            // Criando uma pessoa
             Pessoa pessoa = new Pessoa();
             pessoa.setNome("João");
             pessoa.setNascimento(LocalDate.now());
+            em.persist(pessoa);
 
+            // Criando uma pessoa física associada à pessoa anterior
             PessoaFisica pessoaFisica = new PessoaFisica();
             pessoaFisica.setCPF("12345678901");
             pessoaFisica.setSexo(Sexo.MASCULINO);
+            pessoaFisica.setPessoa(pessoa);
+            em.persist(pessoaFisica);
 
+            // Criando um familiar associado à pessoa anterior
             Familiar familiar = new Familiar();
             familiar.setCpf("98765432109");
             familiar.setEmail("familiar@example.com");
             familiar.setPessoa(pessoa);
+            em.persist(familiar);
 
+            // Criando um exame médico associado ao familiar anterior
             ExameMedico exameMedico = new ExameMedico();
             exameMedico.setLaboratorial("Hemograma");
             exameMedico.setData(LocalDate.now());
             exameMedico.setFamiliar(familiar);
-
-
-            em.persist(pessoa);
-            em.persist(pessoaFisica);
-            em.persist(familiar);
             em.persist(exameMedico);
 
             em.getTransaction().commit();

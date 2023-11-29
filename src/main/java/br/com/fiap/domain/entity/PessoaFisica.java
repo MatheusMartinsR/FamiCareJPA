@@ -13,7 +13,7 @@ import java.util.Set;
 public class PessoaFisica {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SQ_PESSOA_FISICA")
     @Column(name = "ID_PESSOA_FISICA")
     private Long id;
 
@@ -84,5 +84,9 @@ public class PessoaFisica {
 
     public void setFamiliares(Set<PessoaFisica> familiares) {
         this.familiares = familiares;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+
     }
 }
