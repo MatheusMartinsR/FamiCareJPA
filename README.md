@@ -1,5 +1,15 @@
 # GLOBAL SOLUTION - 2023 - FamiCare
 
+![LOGO](documentação/FAMICARE_LOGO.jpg)
+
+# Breve apresentação do grupo:
+* Matheus Martins da Rocha - RM96505 Turma: 2TDSPT(responsável pela entrega de Enterprise APPLICATION DEVELOPMENT e DataBase Application e Data Science)
+* Guilherme Raul Varella - RM97166 Turma: 2TDSPT (responsável pela entrega de DevOps Tools e Cloud Computing)
+* Pedro Fontanez Bravo - RM97366 Turma: 2TDSPT (responsável pela entrega de Disruptive Architectures IT, IoB e IA)
+* Felipe Rios Miranda - RM96726 Turma 2TDSPT (responsável pela entrega de Compliance e Quality Assurance )]
+* Augusto de Carvalho Vertolis Santana - RM96518 Turma 2TDSPT (responsável pela entrega de Hybrid Mobile App Development e Digital Business Enablement)
+
+
 # PROBLEMA:
 
 O problema que o FamiCare se propõe a solucionar está relacionado à gestão ineficiente e descentralizada das informações médicas das famílias que frequentam os postos de saúde do SUS. Antes da introdução do FamiCare, essas informações eram registradas em papel, o que resultava em dificuldades no armazenamento, acesso e compartilhamento desses dados. A falta de centralização e a dependência de registros físicos dificultavam o acompanhamento médico eficiente, especialmente em situações de emergência ou durante consultas em locais diferentes.
@@ -22,17 +32,29 @@ Implementação em Plataformas Não Mobile: Desenvolvimento para plataformas que
 
 # Lista de tecnologias utilizadas e versão: 
 
+- Oracle SQL Developer 21.2.0.187
+- Oracle SQL Developer Data Modeler 21.2.0
+- IntelliJ 2021.3.2.
+- React Native
+- Oracle VM VirtualBox
+- Astah Student 8.2
+- 
 
+# Diagrama de classe: 
 
+![Diagrama_astah](documentação/astah_FamiCare.png)
 
+# Modelo Lógico: 
 
-# Breve apresentação do grupo:
-* Matheus Martins da Rocha - RM96505 Turma: 2TDSPT(responsável pela entrega de Enterprise APPLICATION DEVELOPMENT e DataBase Application e Data Science)
-* Guilherme Raul Varella - RM97166 Turma: 2TDSPT (responsável pela entrega de DevOps Tools e Cloud Computing)
-* Pedro Fontanez Bravo - RM97366 Turma: 2TDSPT (responsável pela entrega de Disruptive Architectures IT, IoB e IA)
-* Felipe Rios Miranda - RM96726 Turma 2TDSPT (responsável pela entrega de Compliance e Quality Assurance )]
-* Augusto de Carvalho Vertolis Santana - RM96518 Turma 2TDSPT (responsável pela entrega de Hybrid Mobile App Development e Digital Business Enablement)
+![Modelo_logico](documentação/Logical%20-%20Copia.png)
 
+# Modelo Físico: 
+
+![Modelo_fisico](documentação/Relational_1%20-%20Copia.png)
+
+# Video Pitch:
+
+-->link<----
 
 # Como rodar a aplicação:
 
