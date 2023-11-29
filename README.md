@@ -38,7 +38,9 @@ Implementação em Plataformas Não Mobile: Desenvolvimento para plataformas que
 - React Native
 - Oracle VM VirtualBox
 - Astah Student 8.2
-- 
+- Software Archi 4.10.0
+- Google Colab 
+- Roboflow
 
 # Diagrama de classe: 
 

@@ -18,7 +18,7 @@ public class ExameMedico {
     private String laboratorial;
 
     @Column(name = "DATA_EXAME")
-    private LocalDate data;  // Alterado para LocalDate
+    private LocalDate data;
 
     @ManyToOne
     @JoinColumn(name = "ID_FAMILIAR")
@@ -46,7 +46,7 @@ public class ExameMedico {
         return data;
     }
 
-    public ExameMedico setData(LocalDate data) {  // Alterado para LocalDate
+    public ExameMedico setData(LocalDate data) {
         this.data = data;
         return this;
     }
