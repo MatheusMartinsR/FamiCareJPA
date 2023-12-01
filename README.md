@@ -56,7 +56,7 @@ Implementação em Plataformas Não Mobile: Desenvolvimento para plataformas que
 
 # Video Pitch:
 
--->link<----
+https://www.youtube.com/watch?v=fVkbXQo-a6o
 
 # Vídeo testando:
 

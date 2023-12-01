@@ -1,0 +1,211 @@
+CREATE TABLE tb_historico_medico (
+    id_historico       NUMBER(5) NOT NULL,
+    id_exame           NUMBER(5) NOT NULL,
+    id_medico          NUMBER(5) NOT NULL,
+    id_receita         NUMBER(5) NOT NULL,
+    historico          VARCHAR2(100) NOT NULL,
+    patologia          VARCHAR2(100) NOT NULL,
+    tratamento         VARCHAR2(100) NOT NULL,
+    alergia            VARCHAR2(100) NOT NULL,
+    historico_familiar VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_historico_medico ADD CONSTRAINT tb_historico_medico_pk PRIMARY KEY ( id_historico );
+
+CREATE TABLE tb_receita_medica (
+    id_receita         NUMBER(5) NOT NULL,
+    receita_temporaria VARCHAR2(100) NOT NULL,
+    receita_continua   VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_receita_medica ADD CONSTRAINT tb_receita_medica_pk PRIMARY KEY ( id_receita );
+
+CREATE TABLE tb_exame_medico (
+    id_exame           NUMBER(5) NOT NULL,
+    laboratorial_exame VARCHAR2(100) NOT NULL,
+    data_exame         DATE NOT NULL
+);
+
+ALTER TABLE tb_exame_medico ADD CONSTRAINT tb_exame_medico_pk PRIMARY KEY ( id_exame );
+
+CREATE TABLE tb_medico (
+    id_medico        NUMBER(5) NOT NULL,
+    id_especialidade NUMBER(5) NOT NULL,
+    nome_medico      VARCHAR2(100) NOT NULL
+);
+
+CREATE UNIQUE INDEX tb_medico__idx ON
+    tb_medico (
+        id_especialidade
+    ASC );
+
+ALTER TABLE tb_medico ADD CONSTRAINT tb_medico_pk PRIMARY KEY ( id_medico );
+
+CREATE TABLE tb_especialidade_medico (
+    id_especialidade NUMBER(5) NOT NULL,
+    especialidade    VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_especialidade_medico ADD CONSTRAINT tb_especialidade_medico_pk PRIMARY KEY ( id_especialidade );
+
+CREATE TABLE tb_pessoa (
+    id_pessoa     NUMBER(5) NOT NULL,
+    id_historico  NUMBER(5) NOT NULL,
+    id_endereco   NUMBER(5) NOT NULL,
+    id_familiar   NUMBER(5) NOT NULL,
+    nome_pessoa   VARCHAR2(100) NOT NULL,
+    dt_nascimento DATE NOT NULL
+);
+
+ALTER TABLE tb_pessoa ADD CONSTRAINT tb_pessoa_pk PRIMARY KEY ( id_pessoa );
+
+CREATE TABLE tb_pessoa_fisica (
+    id_pessoa_fisica NUMBER(5) NOT NULL,
+    id_pessoa        NUMBER(5) NOT NULL,
+    cpf              VARCHAR2(14) NOT NULL
+);
+
+ALTER TABLE tb_pessoa_fisica ADD CONSTRAINT tb_pessoa_fisica_pk PRIMARY KEY ( id_pessoa_fisica );
+
+CREATE TABLE tb_sexo (
+    id_sexo          NUMBER(5) NOT NULL,
+    id_pessoa_fisica NUMBER(5) NOT NULL,
+    nome             VARCHAR2(100) NOT NULL,
+    sigla            VARCHAR2(1) NOT NULL
+);
+
+ALTER TABLE tb_sexo ADD CONSTRAINT tb_sexo_pk PRIMARY KEY ( id_sexo );
+
+CREATE TABLE tb_familiar (
+    id_familiar    NUMBER(5) NOT NULL,
+    cpf_familiar   VARCHAR2(14) NOT NULL,
+    email_familiar VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_familiar ADD CONSTRAINT tb_familiar_pk PRIMARY KEY ( id_familiar );
+
+CREATE TABLE tb_endereco (
+    id_endereco     NUMBER(5) NOT NULL,
+    id_bairro       NUMBER(5) NOT NULL,
+    logradouro      VARCHAR2(100) NOT NULL,
+    numero_endereco VARCHAR2(100) NOT NULL,
+    cep             VARCHAR2(10) NOT NULL
+);
+
+ALTER TABLE tb_endereco ADD CONSTRAINT tb_endereco_pk PRIMARY KEY ( id_endereco );
+
+CREATE TABLE tb_bairro (
+    id_bairro   NUMBER(5) NOT NULL,
+    id_cidade   NUMBER(5) NOT NULL,
+    nome_bairro VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_bairro ADD CONSTRAINT tb_bairro_pk PRIMARY KEY ( id_bairro );
+
+CREATE TABLE tb_cidade (
+    id_cidade   NUMBER(5) NOT NULL,
+    id_estado   NUMBER(5) NOT NULL,
+    nome_cidade VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_cidade ADD CONSTRAINT tb_cidade_pk PRIMARY KEY ( id_cidade );
+
+CREATE TABLE tb_estado (
+    id_estado   NUMBER(5) NOT NULL,
+    id_pais     NUMBER(5) NOT NULL,
+    nome_estado VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_estado ADD CONSTRAINT tb_estado_pk PRIMARY KEY ( id_estado );
+
+CREATE TABLE tb_pais (
+    id_pais   NUMBER(5) NOT NULL,
+    nome_pais VARCHAR2(100) NOT NULL
+);
+
+ALTER TABLE tb_pais ADD CONSTRAINT tb_pais_pk PRIMARY KEY ( id_pais );
+
+
+ALTER TABLE tb_endereco
+    ADD CONSTRAINT fk_bairro_endereco FOREIGN KEY ( id_bairro )
+        REFERENCES tb_bairro ( id_bairro );
+
+ALTER TABLE tb_bairro
+    ADD CONSTRAINT fk_cidade_bairro FOREIGN KEY ( id_cidade )
+        REFERENCES tb_cidade ( id_cidade );
+
+ALTER TABLE tb_pessoa
+    ADD CONSTRAINT fk_endereco_pessoa FOREIGN KEY ( id_endereco )
+        REFERENCES tb_endereco ( id_endereco );
+
+ALTER TABLE tb_medico
+    ADD CONSTRAINT fk_especialidade_medico FOREIGN KEY ( id_especialidade )
+        REFERENCES tb_especialidade_medico ( id_especialidade );
+
+ALTER TABLE tb_cidade
+    ADD CONSTRAINT fk_estado_cidade FOREIGN KEY ( id_estado )
+        REFERENCES tb_estado ( id_estado );
+
+ALTER TABLE tb_historico_medico
+    ADD CONSTRAINT fk_exame_historico FOREIGN KEY ( id_exame )
+        REFERENCES tb_exame_medico ( id_exame );
+
+ALTER TABLE tb_pessoa
+    ADD CONSTRAINT fk_familiar_pessoa FOREIGN KEY ( id_familiar )
+        REFERENCES tb_familiar ( id_familiar );
+
+ALTER TABLE tb_pessoa
+    ADD CONSTRAINT fk_historico_pessoa FOREIGN KEY ( id_historico )
+        REFERENCES tb_historico_medico ( id_historico );
+
+ALTER TABLE tb_historico_medico
+    ADD CONSTRAINT fk_medico_historico FOREIGN KEY ( id_medico )
+        REFERENCES tb_medico ( id_medico );
+
+ALTER TABLE tb_estado
+    ADD CONSTRAINT fk_pais_estado FOREIGN KEY ( id_pais )
+        REFERENCES tb_pais ( id_pais );
+
+ALTER TABLE tb_pessoa_fisica
+    ADD CONSTRAINT fk_pessoa_pf FOREIGN KEY ( id_pessoa )
+        REFERENCES tb_pessoa ( id_pessoa );
+
+ALTER TABLE tb_sexo
+    ADD CONSTRAINT fk_pf_sexo FOREIGN KEY ( id_pessoa_fisica )
+        REFERENCES tb_pessoa_fisica ( id_pessoa_fisica );
+
+ALTER TABLE tb_historico_medico
+    ADD CONSTRAINT fk_receita_historico FOREIGN KEY ( id_receita )
+        REFERENCES tb_receita_medica ( id_receita );
+
+
+
+
+
+DROP TABLE tb_bairro CASCADE CONSTRAINTS;
+
+DROP TABLE tb_cidade CASCADE CONSTRAINTS;
+
+DROP TABLE tb_endereco CASCADE CONSTRAINTS;
+
+DROP TABLE tb_especialidade_medico CASCADE CONSTRAINTS;
+
+DROP TABLE tb_estado CASCADE CONSTRAINTS;
+
+DROP TABLE tb_exame_medico CASCADE CONSTRAINTS;
+
+DROP TABLE tb_familiar CASCADE CONSTRAINTS;
+
+DROP TABLE tb_historico_medico CASCADE CONSTRAINTS;
+
+DROP TABLE tb_medico CASCADE CONSTRAINTS;
+
+DROP TABLE tb_pais CASCADE CONSTRAINTS;
+
+DROP TABLE tb_pessoa CASCADE CONSTRAINTS;
+
+DROP TABLE tb_pessoa_fisica CASCADE CONSTRAINTS;
+
+DROP TABLE tb_receita_medica CASCADE CONSTRAINTS;
+
+DROP TABLE tb_sexo CASCADE CONSTRAINTS;
